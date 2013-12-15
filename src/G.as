@@ -1,13 +1,14 @@
 package
 {
     import org.flixel.*;
-    import components.MP3Pitch;
 
     public class G
     {
         public var _game:FlxGame;
 
-        private static var _instance:G = null;
+        private static var _instance:G;
+        private var _player:Player;
+        private var _hueShift:Number;
 
         public function G() {
         }
@@ -28,5 +29,22 @@ package
         public static function set game(value:FlxGame):void {
           instance._game = value;
         }
+
+        public static function get player():Player {
+          return instance._player;
+        }
+
+        public static function set player(value:Player):void {
+          instance._player = value;
+        }
+
+        public static function get hueShift():Number {
+          return instance._hueShift;
+        }
+
+        public static function set hueShift(value:Number):void {
+          instance._hueShift = value;
+        }
+
     }
 }
