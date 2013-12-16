@@ -10,6 +10,12 @@ package
       action: 0xfffff47c,
       card: 0xff83d8ff
     };
+    public static const BORDER_COLORS:Object = {
+      attack: 0xff562f36,
+      heal: 0xff2e493d,
+      card: 0xff2c455b,
+      action: 0xff4b4231
+    }
 
     public var stats:Object = {
       attack: 0,
@@ -79,9 +85,12 @@ package
       var brush:FlxSprite = new FlxSprite();
       brush.makeGraphic(size > 2 ? 19 : 38, size > 1 ? 29 : 58, COLORS[stat], true, stats[stat] + stat + size);
       if(size < 3) {
-        brush.stamp(new NumberSprite(stats[stat]), brush.width/2 - 8, brush.height/2 - 8);
+        brush.stamp(new NumberSprite(stats[stat]), brush.width/2 - 10, brush.height/2 - 4);
+        brush.stamp(G.iconSprite.setIcon(stat, stats[stat]), brush.width/2 - 3, brush.height/2 - 8);
+        brush.replaceColor(0xff000000, BORDER_COLORS[stat]);
+      } else {
+        brush.stamp(G.iconSprite.setIcon(stat, stats[stat]), brush.width/2 - 8, brush.height/2 - 8);
       }
-      brush.stamp(G.iconSprite.setIcon(stat, stats[stat]), brush.width/2 - 8, brush.height/2 - 8);
       stamp(brush, 3 + 19 * x, 3 + 29 * y);
     }
   }
