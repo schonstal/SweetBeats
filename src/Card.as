@@ -40,9 +40,9 @@ package
       var numStats:int = 0;
       var priority:Array = TYPES.concat();
       priority.sort(function(a:String, b:String):int {
-        if (stats[a]<stats[b]) {
+        if (stats[a]>stats[b]) {
           return -1;
-        } else if (stats[a]>stats[b]) {
+        } else if (stats[a]<stats[b]) {
           return 1;
         } else {
           return 0;
@@ -54,47 +54,32 @@ package
       }
 
       FlxG.log(priority);
+      FlxG.log(stats[priority[0]]);
       if(numStats == 1) {
-        FlxG.log('yo1');
-        brush.makeGraphic(40, 60, COLORS[priority[0]]);
-        stamp(brush, 2, 2);
+        stampSection(0,0,priority[0],1);
       } else if(numStats == 2) {
-        FlxG.log('yo2');
-        brush.makeGraphic(40, 30, COLORS[priority[0]]); 
-        stamp(brush, 2, 2);
-
-        brush.makeGraphic(40, 30, COLORS[priority[1]]); 
-        stamp(brush, 2, 32);
+        stampSection(0,0,priority[0],2);
+        stampSection(0,1,priority[1],2);
       } else if(numStats == 3) {
-        brush.makeGraphic(40, 30, COLORS[priority[0]]); 
-        stamp(brush, 2, 2);
-
-        brush.makeGraphic(20, 30, COLORS[priority[1]]); 
-        stamp(brush, 2, 32);
-
-        brush.makeGraphic(20, 30, COLORS[priority[2]]); 
-        stamp(brush, 22, 32);
+        stampSection(0,0,priority[0],2);
+        stampSection(0,1,priority[1],3);
+        stampSection(1,1,priority[2],3);
       } else if(numStats == 4) {
-        brush.makeGraphic(20, 30, COLORS[priority[0]]); 
-        stamp(brush, 2, 2);
-        stampIcon(priority[0], 4, 4);
-
-        brush.makeGraphic(20, 30, COLORS[priority[1]]); 
-        stamp(brush, 22, 2);
-
-        brush.makeGraphic(20, 30, COLORS[priority[2]]); 
-        stamp(brush, 2, 32);
-
-        brush.makeGraphic(20, 30, COLORS[priority[3]]); 
-        stamp(brush, 22, 32);
+        stampSection(0,0,priority[0],3);
+        stampSection(1,0,priority[1],3);
+        stampSection(0,1,priority[2],3);
+        stampSection(1,1,priority[3],3);
       }
 
-      brush.loadGraphic(Assets.CardBorder);
-      stamp(brush);
+//      brush.loadGraphic(Assets.CardBorder);
+//      stamp(brush);
     }
 
-    private function stampIcon(stat, x:Number, y:Number):void {
-      stamp(G.iconSprite.setIcon(stat, stats[stat]), x, y);
+    private function stampSection(x:int, y:int, stat:String, size:uint):void {
+      var brush:FlxSprite = new FlxSprite();
+      brush.makeGraphic(size > 2 ? 19 : 38, size > 1 ? 29 : 58, COLORS[stat], true, stats[stat] + stat + size);
+      brush.stamp(G.iconSprite.setIcon(stat, stats[stat]), brush.width/2 - 8, brush.height/2 - 8);
+      stamp(brush, 3 + 19 * x, 3 + 29 * y);
     }
   }
 }
