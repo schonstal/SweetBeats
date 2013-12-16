@@ -5,7 +5,6 @@ package
   public class Deck
   {
     private var cards:Array = [];
-    private var discard:Array = [];
 
     public function Deck() {
       for(var i:int = 0; i < 5; i++) {
@@ -14,19 +13,28 @@ package
       }
 
       shuffle();
-      for each(var card:Card in cards) FlxG.log(card.stats['attack'] + ' ' + card.stats['heal']);
     }
 
     public function shuffle():void {
-      var shuffledCards:Array = cards.concat();
-
-      for(var i:int = 0; i < cards.length; i++) {
-        var a:int = Math.floor(Math.random() * cards.length);
-        shuffledCards[i] = shuffledCards[a];
-        shuffledCards[a] = cards[i];
+      var shuffledCards:Array = new Array(cards.length);
+ 
+      var randomPos:Number = 0;
+      for (var i:int = 0; i < shuffledCards.length; i++)
+      {
+          randomPos = int(Math.random() * cards.length);
+          shuffledCards[i] = cards[randomPos];    //note this the other way around to the naive approach
+          cards.splice(randomPos, 1);
       }
 
       cards = shuffledCards;
+    }
+
+    public function drawCard():Card {
+      return cards.pop();
+    }
+
+    public function get count():uint {
+      return cards.length;
     }
   }
 }
