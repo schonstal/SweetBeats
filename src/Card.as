@@ -65,8 +65,6 @@ package
         if(stats[k] > 0) numStats++;
       }
 
-      FlxG.log(priority);
-      FlxG.log(stats[priority[0]]);
       if(numStats == 1) {
         stampSection(0,0,priority[0],1);
       } else if(numStats == 2) {
