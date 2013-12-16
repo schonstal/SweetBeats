@@ -30,7 +30,7 @@ package
     public function removeCard(card:Card):void {
       var i:int = cards.indexOf(card);
       if(i > -1) {
-        _cards = cards.splice(i, 1);
+        _cards.splice(i, 1);
       }
     }
 

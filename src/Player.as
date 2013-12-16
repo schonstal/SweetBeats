@@ -53,7 +53,8 @@ package
     public function takeDamage(count:int):void {
     }
 
-    public function useAction():void {
+    public function performActions(card:Card):void {
+      TweenLite.to(card, 0.3, { x: FlxG.width, ease: Quart.easeIn });
     }
 
     public function drawHand():void {
@@ -82,15 +83,11 @@ package
             ease: Quart.easeOut,
             onComplete: function() {
               performActions(card);
-              //hand.resetPositions();
+              hand.resetPositions();
             }
           });
         }
       });
-    }
-
-    public function performActions(card:Card):void {
-      TweenLite.to(card, 0.3, { x: FlxG.width, ease: Quart.easeIn });
     }
 
     public function drawCard(callback:Function=null):void {
