@@ -14,7 +14,7 @@ package
       for(var i:int = 0; i < 4; i++) {
         cards.push(new Card({attack:1}));
       }
-      for(var i:int = 0; i < 2; i++) {
+      for(i = 0; i < 2; i++) {
         cards.push(new Card({heal:2}));
       }
 

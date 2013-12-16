@@ -26,6 +26,8 @@ package
       card: 0
     };
 
+    public var selectable:Boolean = false;
+
 
     private var sinAmt:Number = 0;
 
@@ -101,24 +103,14 @@ package
     public override function update():void {
       var card:Card = this;
 
-      if(FlxG.mouse.x > x && FlxG.mouse.x < x + width &&
+      if(G.player.canSelect &&
+          FlxG.mouse.x > x && FlxG.mouse.x < x + width &&
           FlxG.mouse.y > y && FlxG.mouse.y < y + height) {
         sinAmt += FlxG.elapsed * 8;
         offset.y = 2 + Math.sin(sinAmt);
         
         if(FlxG.mouse.justPressed()) {
-          TweenLite.to(card, 0.2, {
-            y: FlxG.height + height,
-            ease: Quart.easeIn,
-            onComplete: function():void {
-              x = FlxG.width/2 - width/2;
-              y = -height;
-              TweenLite.to(card, 0.2, {
-                y: FlxG.height/2 - height,
-                ease: Quart.easeOut
-              });
-            }
-          });
+          G.player.selectCard(card);
         }
       } else {
         sinAmt = 1.8 * Math.PI;

@@ -15,7 +15,7 @@ package
 
       G.player = new Player();
       add(G.player);
-      G.player.drawHand();
+      G.player.beginTurn();
     }
 
     override public function update():void {
