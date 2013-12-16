@@ -7,10 +7,15 @@ package
     [Embed(source = '../data/04b03.ttf', fontFamily="zerofour", embedAsCFF="false")] public var ZeroFour:String;
 
     override public function create():void {
-      if(G.player == null) {
-        G.player = new Player();
-      }
-
+      G.player = new Player();
+      add(G.player);
+      G.player.drawHand();
     }
+
+    override public function update():void {
+      if(FlxG.keys.justPressed("SPACE")) FlxG.switchState(new PlayState());
+      super.update();
+    }
+
   }
 }
