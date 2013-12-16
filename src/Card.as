@@ -77,6 +77,7 @@ package
       } else if(numStats == 4) {
         brush.makeGraphic(20, 30, COLORS[priority[0]]); 
         stamp(brush, 2, 2);
+        stampIcon(priority[0], 4, 4);
 
         brush.makeGraphic(20, 30, COLORS[priority[1]]); 
         stamp(brush, 22, 2);
@@ -90,6 +91,10 @@ package
 
       brush.loadGraphic(Assets.CardBorder);
       stamp(brush);
+    }
+
+    private function stampIcon(stat, x:Number, y:Number):void {
+      stamp(G.iconSprite.setIcon(stat, stats[stat]), x, y);
     }
   }
 }
