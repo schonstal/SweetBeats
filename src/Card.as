@@ -71,13 +71,16 @@ package
         stampSection(1,1,priority[3],3);
       }
 
-//      brush.loadGraphic(Assets.CardBorder);
-//      stamp(brush);
+      brush.loadGraphic(Assets.CardBorder);
+      stamp(brush);
     }
 
     private function stampSection(x:int, y:int, stat:String, size:uint):void {
       var brush:FlxSprite = new FlxSprite();
       brush.makeGraphic(size > 2 ? 19 : 38, size > 1 ? 29 : 58, COLORS[stat], true, stats[stat] + stat + size);
+      if(size < 3) {
+        brush.stamp(new NumberSprite(stats[stat]), brush.width/2 - 8, brush.height/2 - 8);
+      }
       brush.stamp(G.iconSprite.setIcon(stat, stats[stat]), brush.width/2 - 8, brush.height/2 - 8);
       stamp(brush, 3 + 19 * x, 3 + 29 * y);
     }
