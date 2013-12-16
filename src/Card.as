@@ -26,7 +26,7 @@ package
       card: 0
     };
 
-    public var selectable:Boolean = false;
+    public var priority:Array;
 
 
     private var sinAmt:Number = 0;
@@ -40,6 +40,17 @@ package
         //Use G.player.level later
       }
 
+      priority = TYPES.concat();
+      priority.sort(function(a:String, b:String):int {
+        if (stats[a]>stats[b]) {
+          return -1;
+        } else if (stats[a]<stats[b]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+
       createGraphic();
     }
 
@@ -52,17 +63,6 @@ package
       var y:Number = 2;
 
       var numStats:int = 0;
-      var priority:Array = TYPES.concat();
-      priority.sort(function(a:String, b:String):int {
-        if (stats[a]>stats[b]) {
-          return -1;
-        } else if (stats[a]<stats[b]) {
-          return 1;
-        } else {
-          return 0;
-        }
-      });
-
       for(var k:String in stats) {
         if(stats[k] > 0) numStats++;
       }
