@@ -10,7 +10,7 @@ package
       FlxG.mouse.show();
 
       var enemySprite:FlxSprite = new FlxSprite();
-      enemySprite.add(Assets.enemyPlaceholder);
+      enemySprite.loadGraphic(Assets.EnemyPlaceholder);
       add(enemySprite);
 
       //FlxG.playMusic(Assets.Music);
