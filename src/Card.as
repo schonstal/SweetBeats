@@ -1,6 +1,8 @@
 package
 {
   import org.flixel.*;
+  import com.greensock.*;
+  import com.greensock.easing.*;
 
   public class Card extends FlxSprite {
     public static const TYPES:Array = ['attack', 'heal', 'card', 'action'];
@@ -23,6 +25,9 @@ package
       action: 0,
       card: 0
     };
+
+
+    private var sinAmt:Number = 0;
 
     public function Card(stats:Object=null) {
       y = 171;
@@ -93,6 +98,36 @@ package
         brush.stamp(G.iconSprite.setIcon(stat, stats[stat]), brush.width/2 - 8, brush.height/2 - 8);
       }
       stamp(brush, 3 + 19 * x, 3 + 29 * y);
+    }
+
+    public override function update():void {
+      var card:Card = this;
+
+      if(FlxG.mouse.x > x && FlxG.mouse.x < x + width &&
+          FlxG.mouse.y > y && FlxG.mouse.y < y + height) {
+        sinAmt += FlxG.elapsed * 8;
+        offset.y = 2 + Math.sin(sinAmt);
+        
+        if(FlxG.mouse.justPressed()) {
+          TweenLite.to(card, 0.2, {
+            y: FlxG.height + height,
+            ease: Quart.easeIn,
+            onComplete: function():void {
+              x = FlxG.width/2 - width/2;
+              y = -height;
+              TweenLite.to(card, 0.2, {
+                y: FlxG.height/2 - height,
+                ease: Quart.easeOut
+              });
+            }
+          });
+        }
+      } else {
+        sinAmt = 1.8 * Math.PI;
+        offset.y = 0;
+      }
+
+      super.update();
     }
   }
 }

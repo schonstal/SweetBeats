@@ -20,7 +20,7 @@ package
 
     public function drawHand():void {
       if(hand.count < 3) {
-        new FlxTimer().start(0.3, 1, function():void { drawHand() });
+        new FlxTimer().start(0.1, 1, function():void { drawHand() });
         drawCard();
       }
     }
@@ -38,6 +38,5 @@ package
           }
         });
     }
-
   }
 }

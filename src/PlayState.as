@@ -7,7 +7,8 @@ package
     [Embed(source = '../data/04b03.ttf', fontFamily="zerofour", embedAsCFF="false")] public var ZeroFour:String;
 
     override public function create():void {
-      FlxG.playMusic(Assets.BattleMusic);
+      FlxG.mouse.show();
+      //FlxG.playMusic(Assets.Music);
       var HUD:FlxSprite = new FlxSprite();
       HUD.loadGraphic(Assets.BattleHud);
       add(HUD);
