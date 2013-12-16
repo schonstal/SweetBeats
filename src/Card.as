@@ -25,6 +25,7 @@ package
     };
 
     public function Card(stats:Object=null) {
+      y = 171;
       if(stats) {
         for(var prop:String in this.stats)
           this.stats[prop] = stats[prop] == null ? this.stats[prop] : stats[prop];

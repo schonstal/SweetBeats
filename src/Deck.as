@@ -14,6 +14,8 @@ package
         cards.push(new Card({heal:2}));
       }
 
+      cards.push(new Card({attack: 3, heal: 2}));
+
       shuffle();
     }
 

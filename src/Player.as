@@ -31,7 +31,7 @@ package
       hand.addCard(card);
       
       TweenLite.to(card, 0.3, {
-          x: (hand.count-1) * card.width,
+          x: 14 + (hand.count-1) * (card.width + 6),
           ease: Quart.easeOut,
           onComplete: function():void {
             if(callback) callback();
