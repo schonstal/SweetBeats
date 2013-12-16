@@ -7,9 +7,9 @@ package
     private var cards:Array = [];
 
     public function Deck() {
-      for(var i:int = 0; i < 5; i++) {
-        cards.push(new Card({attack: 1}));
-        cards.push(new Card({heal: 1}));
+      for(var i:int = 0; i < 3; i++) {
+        cards.push(new Card({attack: 2, action:3, heal:2, card:1}));
+        cards.push(new Card({heal: 1, card:2, action:1, attack:1}));
       }
 
       shuffle();
