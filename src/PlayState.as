@@ -15,7 +15,7 @@ package
 
       //FlxG.playMusic(Assets.Music);
       var HUD:FlxSprite = new FlxSprite();
-      HUD.loadGraphic(Assets.BattleHud);
+      HUD.loadGraphic(Assets.BattleHud, false, false, 320, 240);
       add(HUD);
 
       G.player = new Player();
