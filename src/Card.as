@@ -43,6 +43,12 @@ package
       createGraphic();
     }
 
+    public function discard():Card {
+      var card:Card = this;
+      TweenLite.to(card, 0.3, { x: FlxG.width, ease: Quart.easeIn });
+      return card;
+    }
+
     public function createGraphic():void {
       makeGraphic(44, 64, 0, true);
 

@@ -8,6 +8,11 @@ package
 
     override public function create():void {
       FlxG.mouse.show();
+
+      var enemySprite:FlxSprite = new FlxSprite();
+      enemySprite.add(Assets.enemyPlaceholder);
+      add(enemySprite);
+
       //FlxG.playMusic(Assets.Music);
       var HUD:FlxSprite = new FlxSprite();
       HUD.loadGraphic(Assets.BattleHud);

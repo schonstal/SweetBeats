@@ -41,6 +41,10 @@ package
     }
 
     public function endTurn():void {
+      discardHand();
+      for each(var dummyCard:DummyCard in dummyCards.members) {
+        dummyCard.exists = false;
+      }
     }
 
     public function gainActions(count:int):void {
@@ -54,7 +58,21 @@ package
     }
 
     public function performActions(card:Card):void {
-      TweenLite.to(card, 0.3, { x: FlxG.width, ease: Quart.easeIn });
+      if(card.stats.card > 0) {
+        drawCard();
+        new FlxTimer().start(0.1, 1, function():void { drawCard(function():void { card.discard(); }); });
+      }
+    }
+
+    public function discardHand():void {
+      if(hand.count > 0) {
+        new FlxTimer().start(0.1, 1, function():void { discardHand() });
+        hand.removeCard(hand.cards[hand.cards.length-1].discard());
+      } else {
+        new FlxTimer().start(0.3, 1, function():void {
+          _canSelect = true;
+        });
+      }
     }
 
     public function drawHand():void {
@@ -76,6 +94,7 @@ package
         y: FlxG.height + card.height,
         ease: Quart.easeIn,
         onComplete: function():void {
+          hand.resetPositions();
           card.x = 10;//FlxG.width/2 - card.width/2;
           card.y = -card.height;
           TweenLite.to(card, 0.2, {
@@ -83,7 +102,6 @@ package
             ease: Quart.easeOut,
             onComplete: function() {
               performActions(card);
-              hand.resetPositions();
             }
           });
         }
@@ -96,6 +114,7 @@ package
       card.x = -card.width;
       hand.addCard(card);
       var destination:Number = 13 + (hand.count-1) * (card.width + 6);
+      FlxG.log(destination);
 
       dummyCard = dummyCards.recycle(DummyCard) as DummyCard;
       dummyCard.initialize();
@@ -112,7 +131,6 @@ package
               if(callback) callback();
             }
           });
-          dummyCard.exists = false;
         }
       });
     }
