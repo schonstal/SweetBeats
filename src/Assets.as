@@ -10,6 +10,7 @@ package
     [Embed(source = '../data/numbers.png')] public static var Numbers:Class;
     [Embed(source = '../data/cardBorder.png')] public static var CardBorder:Class;
     [Embed(source = '../data/battleHud.png')] public static var BattleHud:Class;
+    [Embed(source = '../data/deck.png')] public static var Deck:Class;
 
     [Embed(source = '../data/music/sweet.mp3')] public static var Music:Class;
     [Embed(source = '../data/music/battle.mp3')] public static var BattleMusic:Class;

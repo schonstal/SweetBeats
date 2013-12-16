@@ -9,6 +9,7 @@ package
   {
     public function CardGame() {
       FlxG.debug = true;
+      FlxG.visualDebug = true;
       forceDebugger = true;
 
       super(320,240,PlayState,4);
