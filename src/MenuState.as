@@ -2,11 +2,10 @@ package
 {
   import org.flixel.*;
 
-  public class PlayState extends FlxState
+  public class MenuState extends FlxState
   {
-    [Embed(source = '../data/04b03.ttf', fontFamily="zerofour", embedAsCFF="false")] public var ZeroFour:String;
-
     override public function create():void {
+      FlxG.mouse.show();
       FlxG.playMusic(Assets.Music);
       var title:FlxSprite = new FlxSprite();
       title.loadGraphic(Assets.Title);
