@@ -14,6 +14,7 @@ package
     private var hand:Hand;
     private var discard:Array;
     private var dummyCards:FlxGroup;
+    private var healthGroup:HealthGroup;
 
     //Stats
     private var health:int = 3;
@@ -27,12 +28,14 @@ package
       deck = new Deck();
       hand = new Hand();
       discard = new Array();
+      healthGroup = new HealthGroup();
 
       dummyCards = new FlxGroup();
 
       add(hand);
       add(deck);
       add(dummyCards);
+      add(healthGroup);
     }
 
     public function beginTurn():void {
@@ -51,7 +54,9 @@ package
       actions++;
     }
 
-    public function gainHealth(count:int):void {
+    public function gainHealth(count:int, callback:Function=null):void {
+      health = health + count;
+      healthGroup.fillToHealth(health, callback);
     }
 
     public function takeDamage(count:int):void {
@@ -60,8 +65,21 @@ package
     public function performActions(card:Card):void {
       if(card.stats.card > 0) {
         drawCard();
-        new FlxTimer().start(0.1, 1, function():void { drawCard(function():void { card.discard(G.lightMask.fadeOut); }); });
+        new FlxTimer().start(0.1, 1, function():void { drawCard(function():void { card.discard(cardDone); }); });
       }
+
+      if(card.stats.heal > 0) {
+        gainHealth(card.stats.heal, function():void { card.discard(cardDone) });
+      }
+
+      if(card.stats.attack) {
+        FlxG.shake(0.01, 0.3, function():void { card.discard(cardDone) });
+      }
+    }
+
+    public function cardDone():void {
+      G.lightMask.fadeOut();
+      _canSelect = true;
     }
 
     public function discardHand():void {
