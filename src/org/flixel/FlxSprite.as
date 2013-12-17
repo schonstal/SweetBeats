@@ -502,7 +502,8 @@ package org.flixel
 					_flashPoint.x = _point.x;
 					_flashPoint.y = _point.y;
           if(onTop) {
-            G.overlay.pixels.copyPixels(framePixels,_flashRect,_flashPoint,null,null,true);
+            G.overlay.stamp(this, _point.x, _point.y);
+            //G.overlay.pixels.copyPixels(framePixels,_flashRect,_flashPoint,null,null,true);
           } else {
             camera.buffer.copyPixels(framePixels,_flashRect,_flashPoint,null,null,true);
           }
@@ -516,7 +517,8 @@ package org.flixel
 						_matrix.rotate(angle * 0.017453293);
 					_matrix.translate(_point.x+origin.x,_point.y+origin.y);
           if(onTop) {
-            G.overlay.pixels.copyPixels(framePixels,_flashRect,_flashPoint,null,null,true);
+            G.overlay.stamp(this, _point.x, _point.y);
+            //G.overlay.pixels.copyPixels(framePixels,_flashRect,_flashPoint,null,null,true);
           } else {
             camera.buffer.draw(framePixels,_matrix,null,blend,null,antialiasing);
           }

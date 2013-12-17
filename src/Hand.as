@@ -6,7 +6,7 @@ package
 
   public class Hand extends FlxGroup
   {
-    public static const MAX_SIZE = 6;
+    public static const MAX_SIZE:uint = 6;
 
     private var _cards:Array = [];
 

@@ -60,7 +60,7 @@ package
     public function performActions(card:Card):void {
       if(card.stats.card > 0) {
         drawCard();
-        new FlxTimer().start(0.1, 1, function():void { drawCard(function():void { card.discard(); }); });
+        new FlxTimer().start(0.1, 1, function():void { drawCard(function():void { card.discard(G.lightMask.fadeOut); }); });
       }
     }
 
@@ -92,6 +92,8 @@ package
     }
 
     public function selectCard(card:Card):void {
+      G.lightMask.fadeIn();
+      card.onTop = true;
       _canSelect = false;
       hand.removeCard(card);
       add(card);
@@ -106,7 +108,7 @@ package
           TweenLite.to(card, 0.2, {
             y: 26,
             ease: Quart.easeOut,
-            onComplete: function() {
+            onComplete: function():void {
               performActions(card);
             }
           });
@@ -129,12 +131,12 @@ package
       TweenLite.to(dummyCard, 0.2, {
         x: -dummyCard.width,
         ease: Linear.easeNone,
-        onComplete: function() {
+        onComplete: function():void {
           TweenLite.to(card, 0.3, {
             x: destination, 
             ease: Quart.easeOut,
             onComplete: function():void {
-              if(callback) callback();
+              if(callback != null) callback();
             }
           });
         }
