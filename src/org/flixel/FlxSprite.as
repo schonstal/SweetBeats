@@ -158,7 +158,8 @@ package org.flixel
     private var baseMap:Array;
     private var mappedImage:BitmapData;
     private var _hueShift:Number = 0;
-    public var ignoreHue = false;
+    public var ignoreHue:Boolean = true;
+    public var onTop:Boolean = false;
 
     public function get hueShift():Number {
             return _hueShift;
@@ -500,7 +501,11 @@ package org.flixel
 				{	//Simple render
 					_flashPoint.x = _point.x;
 					_flashPoint.y = _point.y;
-					camera.buffer.copyPixels(framePixels,_flashRect,_flashPoint,null,null,true);
+          if(onTop) {
+            G.overlay.pixels.copyPixels(framePixels,_flashRect,_flashPoint,null,null,true);
+          } else {
+            camera.buffer.copyPixels(framePixels,_flashRect,_flashPoint,null,null,true);
+          }
 				}
 				else
 				{	//Advanced render
@@ -510,7 +515,11 @@ package org.flixel
 					if((angle != 0) && (_bakedRotation <= 0))
 						_matrix.rotate(angle * 0.017453293);
 					_matrix.translate(_point.x+origin.x,_point.y+origin.y);
-					camera.buffer.draw(framePixels,_matrix,null,blend,null,antialiasing);
+          if(onTop) {
+            G.overlay.pixels.copyPixels(framePixels,_flashRect,_flashPoint,null,null,true);
+          } else {
+            camera.buffer.draw(framePixels,_matrix,null,blend,null,antialiasing);
+          }
 				}
 				_VISIBLECOUNT++;
 				if(FlxG.visualDebug && !ignoreDrawDebug)

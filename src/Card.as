@@ -43,9 +43,15 @@ package
       createGraphic();
     }
 
-    public function discard():Card {
+    public function discard(callback:Function = null):Card {
       var card:Card = this;
-      TweenLite.to(card, 0.3, { x: FlxG.width, ease: Quart.easeIn });
+      TweenLite.to(card, 0.3, {
+        x: FlxG.width,
+        ease: Quart.easeIn,
+        onComplete: function():void {
+          if(callback != null) callback();
+        }
+      });
       return card;
     }
 

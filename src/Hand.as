@@ -31,6 +31,7 @@ package
       var i:int = cards.indexOf(card);
       if(i > -1) {
         _cards.splice(i, 1);
+        remove(card, true);
       }
     }
 

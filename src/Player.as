@@ -65,9 +65,14 @@ package
     }
 
     public function discardHand():void {
+      var card:Card;
+
       if(hand.count > 0) {
         new FlxTimer().start(0.1, 1, function():void { discardHand() });
-        hand.removeCard(hand.cards[hand.cards.length-1].discard());
+        card = hand.cards[hand.cards.length-1];
+        card.discard(function():void {
+          hand.removeCard(card);
+        });
       } else {
         new FlxTimer().start(0.3, 1, function():void {
           _canSelect = true;
@@ -89,6 +94,7 @@ package
     public function selectCard(card:Card):void {
       _canSelect = false;
       hand.removeCard(card);
+      add(card);
 
       TweenLite.to(card, 0.2, {
         y: FlxG.height + card.height,
