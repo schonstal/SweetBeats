@@ -10,6 +10,8 @@ package
         private var _player:Player;
         private var _hueShift:Number;
         private var _iconSprite:IconSprite;
+        private var _lightMask:LightMask;
+        private var _overlay:Overlay; 
 
         public function G() {
         }
@@ -30,6 +32,22 @@ package
 
         public static function set game(value:FlxGame):void {
           instance._game = value;
+        }
+
+        public static function get lightMask():LightMask {
+          return instance._lightMask;
+        }
+
+        public static function set lightMask(value:LightMask):void {
+          instance._lightMask = value;
+        }
+
+        public static function get overlay():Overlay {
+          return instance._overlay;
+        }
+
+        public static function set overlay(value:Overlay):void {
+          instance._overlay = value;
         }
 
         public static function get player():Player {

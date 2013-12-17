@@ -41,6 +41,10 @@ package
     }
 
     public function endTurn():void {
+      discardHand();
+      for each(var dummyCard:DummyCard in dummyCards.members) {
+        dummyCard.exists = false;
+      }
     }
 
     public function gainActions(count:int):void {
@@ -54,7 +58,26 @@ package
     }
 
     public function performActions(card:Card):void {
-      TweenLite.to(card, 0.3, { x: FlxG.width, ease: Quart.easeIn });
+      if(card.stats.card > 0) {
+        drawCard();
+        new FlxTimer().start(0.1, 1, function():void { drawCard(function():void { card.discard(G.lightMask.fadeOut); }); });
+      }
+    }
+
+    public function discardHand():void {
+      var card:Card;
+
+      if(hand.count > 0) {
+        new FlxTimer().start(0.1, 1, function():void { discardHand() });
+        card = hand.cards[hand.cards.length-1];
+        card.discard(function():void {
+          hand.removeCard(card);
+        });
+      } else {
+        new FlxTimer().start(0.3, 1, function():void {
+          _canSelect = true;
+        });
+      }
     }
 
     public function drawHand():void {
@@ -69,21 +92,24 @@ package
     }
 
     public function selectCard(card:Card):void {
+      G.lightMask.fadeIn();
+      card.onTop = true;
       _canSelect = false;
       hand.removeCard(card);
+      add(card);
 
       TweenLite.to(card, 0.2, {
         y: FlxG.height + card.height,
         ease: Quart.easeIn,
         onComplete: function():void {
+          hand.resetPositions();
           card.x = 10;//FlxG.width/2 - card.width/2;
           card.y = -card.height;
           TweenLite.to(card, 0.2, {
             y: 26,
             ease: Quart.easeOut,
-            onComplete: function() {
+            onComplete: function():void {
               performActions(card);
-              hand.resetPositions();
             }
           });
         }
@@ -96,6 +122,7 @@ package
       card.x = -card.width;
       hand.addCard(card);
       var destination:Number = 13 + (hand.count-1) * (card.width + 6);
+      FlxG.log(destination);
 
       dummyCard = dummyCards.recycle(DummyCard) as DummyCard;
       dummyCard.initialize();
@@ -104,15 +131,14 @@ package
       TweenLite.to(dummyCard, 0.2, {
         x: -dummyCard.width,
         ease: Linear.easeNone,
-        onComplete: function() {
+        onComplete: function():void {
           TweenLite.to(card, 0.3, {
             x: destination, 
             ease: Quart.easeOut,
             onComplete: function():void {
-              if(callback) callback();
+              if(callback != null) callback();
             }
           });
-          dummyCard.exists = false;
         }
       });
     }

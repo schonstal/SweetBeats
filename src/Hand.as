@@ -6,7 +6,7 @@ package
 
   public class Hand extends FlxGroup
   {
-    public static const MAX_SIZE = 6;
+    public static const MAX_SIZE:uint = 6;
 
     private var _cards:Array = [];
 
@@ -31,6 +31,7 @@ package
       var i:int = cards.indexOf(card);
       if(i > -1) {
         _cards.splice(i, 1);
+        remove(card, true);
       }
     }
 
