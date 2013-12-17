@@ -11,6 +11,7 @@ package
     [Embed(source = '../data/cardBorder.png')] public static var CardBorder:Class;
     [Embed(source = '../data/battleHud.png')] public static var BattleHud:Class;
     [Embed(source = '../data/deck.png')] public static var Deck:Class;
+    [Embed(source = '../data/heart.png')] public static var Heart:Class;
 
     [Embed(source = '../content/enemies.png')] public static var EnemyPlaceholder:Class;
 
