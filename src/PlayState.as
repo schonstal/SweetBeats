@@ -1,6 +1,8 @@
 package
 {
   import org.flixel.*;
+  import org.flixel.plugin.photonstorm.*;
+  import flash.geom.Rectangle;
 
   public class PlayState extends FlxState
   {
@@ -8,13 +10,9 @@ package
 
     override public function create():void {
       FlxG.mouse.show();
+      add(new ScrollingBackground());
 
-      var enemySprite:FlxSprite = new FlxSprite();
-      enemySprite.loadGraphic(Assets.EnemyPlaceholder);
-      enemySprite.ignoreHue = false;
-      add(enemySprite);
-
-      FlxG.playMusic(Assets.BattleMusic);
+      //FlxG.playMusic(Assets.BattleMusic);
       var HUD:FlxSprite = new FlxSprite();
       HUD.loadGraphic(Assets.BattleHud, false, false, 320, 240);
       add(HUD);

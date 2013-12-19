@@ -14,6 +14,9 @@ package
     [Embed(source = '../data/heart.png')] public static var Heart:Class;
     [Embed(source = '../data/title.png')] public static var Title:Class;
 
+    //Background Tiles
+    [Embed(source = '../data/bgTile01.png')] public static var PinkDiamonds:Class;
+
     [Embed(source = '../content/enemies.png')] public static var EnemyPlaceholder:Class;
 
     [Embed(source = '../data/music/sweet.mp3')] public static var Music:Class;

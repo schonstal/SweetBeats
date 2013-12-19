@@ -12,7 +12,7 @@ package
       y = 128;
 
       for(var i:int = 0; i < 4; i++) {
-        cards.push(new Card({attack:1}));
+        cards.push(new Card({card: 2, action: 1}));
       }
       for(i = 0; i < 2; i++) {
         cards.push(new Card({heal:2}));
