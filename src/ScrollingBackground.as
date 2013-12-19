@@ -19,7 +19,7 @@ package
           backgroundSprite.x = backgroundSprite.width * i;
           backgroundSprite.y = backgroundSprite.height * j;
           add(backgroundSprite);
-          FlxScrollZone.add(backgroundSprite, new Rectangle(0, 0, backgroundSprite.width, backgroundSprite.height), 1, 1);
+          FlxScrollZone.add(backgroundSprite, new Rectangle(0, 0, backgroundSprite.width, backgroundSprite.height), 0.5, 0.5);
           FlxScrollZone.startScrolling(backgroundSprite);
         }
       }
