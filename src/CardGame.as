@@ -2,7 +2,7 @@ package
 {
   import org.flixel.*;
 
-  [SWF(width="640", height="480", backgroundColor="#000000")]
+  [SWF(width="1280", height="960", backgroundColor="#000000")]
   [Frame(factoryClass="Preloader")]
 
   public class CardGame extends FlxGame
@@ -12,7 +12,7 @@ package
       FlxG.visualDebug = true;
       forceDebugger = true;
 
-      super(320,240,MenuState,2);
+      super(320,240,PlayState,4);
     }
   }
 }

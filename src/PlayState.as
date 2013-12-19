@@ -1,6 +1,7 @@
 package
 {
   import org.flixel.*;
+  import org.flixel.plugin.photonstorm.*;
 
   public class PlayState extends FlxState
   {
@@ -14,7 +15,7 @@ package
       enemySprite.ignoreHue = false;
       add(enemySprite);
 
-      FlxG.playMusic(Assets.BattleMusic);
+      //FlxG.playMusic(Assets.BattleMusic);
       var HUD:FlxSprite = new FlxSprite();
       HUD.loadGraphic(Assets.BattleHud, false, false, 320, 240);
       add(HUD);
