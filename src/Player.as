@@ -112,6 +112,7 @@ package
     public function selectCard(card:Card):void {
       G.lightMask.fadeIn();
       card.onTop = true;
+      card.selected = true;
       _canSelect = false;
       hand.removeCard(card);
       add(card);

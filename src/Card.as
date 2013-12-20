@@ -27,9 +27,10 @@ package
     };
 
     public var priority:Array;
-
+    public var selected:Boolean = false;
 
     private var sinAmt:Number = 0;
+    private var shadow:ShadowSprite;
 
     public function Card(stats:Object=null) {
       y = 171;
@@ -41,6 +42,7 @@ package
       }
 
       createGraphic();
+      shadow = new ShadowSprite(this);
     }
 
     public function discard(callback:Function = null):Card {
@@ -126,10 +128,26 @@ package
         }
       } else {
         sinAmt = 1.8 * Math.PI;
-        offset.y = 0;
+        offset.y = selected ? 3 : 0;
       }
 
       super.update();
+    }
+
+    public override function postUpdate():void {
+      shadow.x = x;
+      shadow.y = y;
+      if(offset.y != 0) {
+        shadow.visible = true;
+      } else {
+        shadow.visible = false;
+      }
+      super.postUpdate();
+    }
+
+    public override function draw():void {
+      if(shadow.visible) shadow.draw();
+      super.draw();
     }
   }
 }

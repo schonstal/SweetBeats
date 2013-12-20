@@ -9,6 +9,8 @@ package
     [Embed(source = '../data/04b03.ttf', fontFamily="zerofour", embedAsCFF="false")] public var ZeroFour:String;
 
     override public function create():void {
+      ShadowSprite.initialize();
+
       FlxG.mouse.show();
       add(new ScrollingBackground());
 
