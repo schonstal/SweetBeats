@@ -7,7 +7,7 @@ package
     private static var initialized:Object = {};
 
     public function ShadowSprite(sprite:FlxSprite, cache_key:String='card') {
-      makeGraphic(sprite.width, sprite.height, 0, false, cache_key+'shadow');
+      makeGraphic(sprite.width, sprite.height, 0, true, cache_key+'shadow');
 
       if(!initialized[cache_key]) {
         for(var i:int=0; i < sprite.width; i++) {
@@ -22,10 +22,6 @@ package
         //framePixels won't modify the cache
         stamp(this);
       }
-    }
-
-    public static function initialize():void {
-      initialized = {};
     }
   }
 }
