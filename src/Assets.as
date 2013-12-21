@@ -14,6 +14,11 @@ package
     [Embed(source = '../data/heart.png')] public static var Heart:Class;
     [Embed(source = '../data/title.png')] public static var Title:Class;
 
+    //Enemies
+    [Embed(source = '../data/enemies/donut.png')] public static var DonutEnemy:Class;
+    [Embed(source = '../data/enemies/gumdrop.png')] public static var GumdropEnemy:Class;
+
+
     //Background Tiles
     [Embed(source = '../data/bgTile01.png')] public static var PinkDiamonds:Class;
 

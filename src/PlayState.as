@@ -21,6 +21,11 @@ package
       add(G.player);
       G.player.beginTurn();
 
+      var e:FlxSprite = new FlxSprite(FlxG.width/2-45,50);
+      e.loadGraphic(Assets.DonutEnemy, true, false, 90, 78);
+      e.frame = 1;
+      add(e);
+
       G.lightMask = new LightMask();
       add(G.lightMask);
 
