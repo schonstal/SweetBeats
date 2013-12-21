@@ -6,7 +6,7 @@ package
   {
     override public function create():void {
       FlxG.mouse.show();
-      //FlxG.playMusic(Assets.Music);
+      MusicPlayer.play(Assets.Music, true);
       var title:FlxSprite = new FlxSprite();
       title.loadGraphic(Assets.Title);
       add(title);

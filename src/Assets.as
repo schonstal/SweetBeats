@@ -24,7 +24,7 @@ package
 
     [Embed(source = '../content/enemies.png')] public static var EnemyPlaceholder:Class;
 
-    [Embed(source = '../data/music/sweet.mp3')] public static var Music:Class;
-    [Embed(source = '../data/music/battle.mp3')] public static var BattleMusic:Class;
+    [Embed(source = '../data/music/sweet.xm', mimeType="application/octet-stream")] public static var Music:Class;
+    [Embed(source = '../data/music/battle.xm', mimeType="application/octet-stream")] public static var BattleMusic:Class;
   }
 }
