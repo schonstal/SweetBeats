@@ -9,7 +9,7 @@ package
     [Embed(source = '../data/icons.png')] public static var Icons:Class;
     [Embed(source = '../data/numbers.png')] public static var Numbers:Class;
     [Embed(source = '../data/cardBorder.png')] public static var CardBorder:Class;
-    [Embed(source = '../data/battleHud.png')] public static var BattleHud:Class;
+    [Embed(source = '../data/hud/battle/battleHud.png')] public static var BattleHud:Class;
     [Embed(source = '../data/deck.png')] public static var Deck:Class;
     [Embed(source = '../data/heart.png')] public static var Heart:Class;
     [Embed(source = '../data/title.png')] public static var Title:Class;
