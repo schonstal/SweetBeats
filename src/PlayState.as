@@ -22,7 +22,7 @@ package
       G.player.beginTurn();
 
       var e:FlxSprite = new FlxSprite(FlxG.width/2-45,50);
-      e.loadGraphic(Assets.DonutEnemy, true, false, 90, 78);
+      e.loadGraphic(Assets.DonutEnemy, true, false, 90, 81);
       e.frame = 1;
       add(e);
 
