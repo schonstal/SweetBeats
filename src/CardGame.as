@@ -12,7 +12,7 @@ package
       FlxG.visualDebug = true;
       forceDebugger = true;
 
-      super(320,240,PlayState,4,60,60);
+      super(320,240,MenuState,4,60,60);
     }
   }
 }
