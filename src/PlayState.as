@@ -12,7 +12,7 @@ package
       FlxG.mouse.show();
       add(new ScrollingBackground());
 
-      //MusicPlayer.play(Assets.BattleMusic, true);
+      FlxG.playMusic(Assets.BattleMusic);
       var HUD:FlxSprite = new FlxSprite();
       HUD.loadGraphic(Assets.BattleHud, false, false, 320, 240);
       add(HUD);
